@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Image, ImageSourcePropType, View } from "react-native";
+import { Image, ImageSourcePropType, View, StatusBar } from "react-native";
 import { icons } from "@/constants";
 
 const TabIcon = ({
@@ -111,6 +111,7 @@ export default function Layout() {
           ),
         }}
       />
+      <StatusBar barStyle="dark-content" />
     </Tabs>
   );
 }

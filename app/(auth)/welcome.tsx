@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, StatusBar } from "react-native";
 import Swiper from "react-native-swiper";
 import { useRouter } from "expo-router";
 import { images } from "@/constants";
@@ -71,6 +71,7 @@ const WelcomeScreen = () => {
           {index === swipers.length - 1 ? "Başlayın" : "Sonraki"}
         </Text>
       </TouchableOpacity>
+      <StatusBar barStyle="dark-content" />
     </View>
   );
 };
