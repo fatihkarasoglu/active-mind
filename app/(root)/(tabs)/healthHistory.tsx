@@ -1,10 +1,12 @@
-import { View, Text } from "react-native";
+import { Text, SafeAreaView } from "react-native";
 
 const HealthHistoryScreen = () => {
   return (
-    <View>
-      <Text>HealthHistoryScreen</Text>
-    </View>
+    <SafeAreaView className="flex-1 bg-[#fcf6f5] flex justify-center items-center">
+      <Text className="text-[#1c3d3d] font-OpenSansSemiBold text-lg">
+        Çok Yakında...
+      </Text>
+    </SafeAreaView>
   );
 };
 

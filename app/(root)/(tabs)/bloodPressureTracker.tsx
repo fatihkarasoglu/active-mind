@@ -59,7 +59,7 @@ const BloodPressureTrackerScreen = () => {
 
   const getChartData = (data: Reading[]) => ({
     labels: data.map((reading, index) => {
-      if (index % 2 === 0) {
+      if (index % 3 === 0) {
         return formatDate(reading.timestamp);
       }
       return "";
@@ -140,7 +140,7 @@ const BloodPressureTrackerScreen = () => {
               ) ? (
                 <LineChart
                   data={getChartData(chartData)}
-                  width={385}
+                  width={375}
                   height={275}
                   yAxisLabel=""
                   yAxisSuffix=""
@@ -157,7 +157,7 @@ const BloodPressureTrackerScreen = () => {
                     propsForDots: {
                       r: "3",
                       strokeWidth: "2",
-                      stroke: "#000",
+                      stroke: "#1c3d3d",
                     },
                   }}
                   bezier
@@ -176,14 +176,14 @@ const BloodPressureTrackerScreen = () => {
               <View className="border border-[#1c3d3d] rounded-xl overflow-hidden mt-2">
                 {readings.map((reading, index) => (
                   <View
-                    className="flex flex-row justify-between items-center px-4 py-3 last:border-0"
+                    className="flex flex-row justify-between items-center px-4 py-3 last:border-1"
                     key={index}
                   >
                     <View className="flex flex-row items-center">
-                      <Text className="text-[#1c3d3d] text-sm font-OpenSansMedium">
+                      <Text className="text-[#1c3d3d] text-lg font-OpenSansRegular">
                         {formatDate(reading.timestamp)}
                       </Text>
-                      <Text className="text-[#1c3d3d] text-lg font-OpenSansRegular ml-6">
+                      <Text className="text-[#1c3d3d] text-lg font-OpenSansRegular ml-10">
                         {reading.systolic} / {reading.diastolic}
                       </Text>
                     </View>
@@ -191,7 +191,7 @@ const BloodPressureTrackerScreen = () => {
                       className="bg-red-50 px-6 py-2 rounded-full border border-red-300"
                       onPress={() => handleDelete(index)}
                     >
-                      <Text className="text-[#d953af] font-OpenSansSemiBold">
+                      <Text className="text-[#d953af] text-lg font-OpenSansSemiBold">
                         Sil
                       </Text>
                     </TouchableOpacity>
