@@ -46,7 +46,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-[#fcf6f5]">
-      <ScrollView className="flex-1">
+      <ScrollView className="flex-1 android:mb-32 pt-6 ios:mb-20">
         <View className="px-6">
           <View className="flex-row justify-between items-center">
             <View>

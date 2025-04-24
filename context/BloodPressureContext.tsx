@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useMemo,
-  ReactNode,
-  useCallback,
-} from "react";
+import React, { useState, useEffect, ReactNode, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Reading = {
@@ -41,53 +34,47 @@ export const BloodPressureProvider = ({
   children: ReactNode;
 }) => {
   const [readings, setReadings] = useState<Reading[]>([]);
-  const loadReadings = useCallback(async () => {
+
+  const loadReadings = React.useCallback(async () => {
     try {
       const storedReadings = await AsyncStorage.getItem(
-        "BloodPressureReadingsLogs"
+        "bloodPressureReadings"
       );
       if (storedReadings) {
         setReadings(JSON.parse(storedReadings));
       }
-    } catch (err) {
-      console.error("Error loading readings:", err);
+    } catch (error) {
+      console.error("Error loading readings:", error);
     }
   }, []);
 
-  const addReading = useCallback((reading: Reading) => {
+  const addReading = React.useCallback((reading: Reading) => {
     setReadings((prev) => {
       const updated = [...prev, reading];
-      AsyncStorage.setItem("BloodPressureReading", JSON.stringify(updated));
+      AsyncStorage.setItem("bloodPressureReadings", JSON.stringify(updated));
       return updated;
     });
   }, []);
 
   useEffect(() => {
-    let listed = true;
+    let isMounted = true;
 
     const load = async () => {
-      if (listed) {
+      if (isMounted) {
         await loadReadings();
       }
-      load();
+    };
 
-      return () => {
-        listed = false;
-      };
+    load();
+
+    return () => {
+      isMounted = false;
     };
   }, []);
 
   return (
     <BloodPressureContext.Provider
-      value={useMemo(
-        () => ({
-          readings,
-          addReading,
-          loadReadings,
-          setReadings,
-        }),
-        [readings, addReading, loadReadings]
-      )}
+      value={{ readings, addReading, loadReadings, setReadings }}
     >
       {children}
     </BloodPressureContext.Provider>

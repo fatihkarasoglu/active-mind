@@ -34,7 +34,7 @@ export default function Layout() {
         tabBarInactiveTintColor: "#1c3d3d",
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "fcf6f5",
+          backgroundColor: "#fcf6f5",
           borderColor: "#1c3d3d",
           borderWidth: 1,
           borderRadius: 25,
@@ -48,6 +48,7 @@ export default function Layout() {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
+          pointerEvents: "auto",
         },
       }}
     >
